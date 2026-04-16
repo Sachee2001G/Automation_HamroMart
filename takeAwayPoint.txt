@@ -25,3 +25,8 @@ async/await:
 To run the tests:
     npx playwright test -> runs all the tests in test file
     npx playwright test [filename]
+    npx playwright test [filename] --project=chromium --headed
+    npx playwright test [filename] --project=chromium --headed --debug   -> Stepwise
+
+locating elements in Playwright
+-> Property -> Css -> XPath
