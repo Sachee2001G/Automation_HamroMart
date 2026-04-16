@@ -35,6 +35,25 @@ test("has title", async ({ page }) => {
     console.log("User is not logged in");
   }
 
+  await page.getByText("HAMRO MART", { exact: true }).click();
+
+  //  All products inside grid
+  const products = page.locator("div.grid-layout.svelte-l0bug1 a");
+
+  const count = await products.count();
+  console.log(`Total products found: ${count}`);
+
+  for (let i = 0; i < count; i++) {
+    const product = products.nth(i);
+
+    // Optional: ensure product is visible
+    await expect(product).toBeVisible();
+
+    // Wishlist inside each product
+    const wishlistIcon = product.locator("button svg, svg");
+
+    await expect(wishlistIcon.first()).toBeVisible();
+
+    console.log(`Wishlist exists in product ${i + 1}`);
+  }
 });
-
-
