@@ -1,0 +1,27 @@
+Install Playwright:
+    npm init playwright@latest
+
+To test The version:
+    npm playwright -v
+
+Files:
+    package.json --> node project management file
+    playwright.config.js --> playwright configuration
+
+For generating html Report:
+    npx playwright show-report 
+
+Playwright works in headless  mode:
+to make is Headed = True
+    npx playwright test --headed
+
+Promise Function:
+A Promise in JavaScript is an object that represents the result of an asynchronous operation—either now, later, or never.
+    (resolved,rejected)
+async/await:
+    async: make the func return a Promise
+    await: waits until the promise is fulfilled.
+
+To run the tests:
+    npx playwright test -> runs all the tests in test file
+    npx playwright test [filename]
