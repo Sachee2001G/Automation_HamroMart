@@ -96,6 +96,14 @@ test("has title", async ({ page }) => {
 
   await expect(getProductByName(page, productName).first()).toBeVisible();
 
+  // store for next test
+  testInfo.attach("productName", {
+    body: productName,
+    contentType: "text/plain",
+  });
+
+  await product.click();
+
   await page.waitForTimeout(3000); // waits 3 seconds
 
   await Promise.all([getProductByName(page, productName).first().click()]);
