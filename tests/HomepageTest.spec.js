@@ -75,12 +75,30 @@ test("has title", async ({ page }) => {
   }
 
   // 2. Pick ONE random product (after loop)
-  const randomIndex = Math.floor(Math.random() * count);
-  const randomProduct = products.nth(randomIndex);
+  // const randomIndex = Math.floor(Math.random() * count);
+  // const randomProduct = products.nth(randomIndex);
 
-  console.log(`Clicking random product index: ${randomIndex}`);
+  // console.log(`Clicking random product index: ${randomIndex}`);
 
-  await randomProduct.click();
+  // await randomProduct.click();
 
-  await page.waitForLoadState("networkidle");
+  // await page.waitForLoadState("networkidle");
+
+  // Reusable function
+  function getProductByName(page, name) {
+    return page.locator("div.grid-layout a").filter({
+      has: page.locator("h1", { hasText: new RegExp(name, "i") }),
+    });
+  }
+
+  // Usage (Homepage)
+  const productName = "Heart Shaped Box Chocolate";
+
+  await expect(getProductByName(page, productName).first()).toBeVisible();
+
+  await page.waitForTimeout(3000); // waits 3 seconds
+
+  await Promise.all([getProductByName(page, productName).first().click()]);
+
+  await page.waitForTimeout(3000); // waits 3 seconds
 });
