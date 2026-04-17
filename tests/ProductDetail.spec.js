@@ -54,5 +54,12 @@ test("Product detail validation", async ({ page }) => {
 
   // Final Validation log
 
-  console.log("Product Detail Validation Completed");
+    console.log("Product Detail Validation Completed");
+    
+    // Now click on Add to Cart and validate cart count increment
+    await page.getByRole('button', { name: /add to cart/i }).click();
+
+    // Validate cart count
+
+    
 });
