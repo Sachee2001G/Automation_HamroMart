@@ -61,7 +61,12 @@ test("Product detail validation", async ({ page }) => {
 
   const batch = page.locator(".coupon-count.svelte-1skedrb");
 
-    await expect(batch).toHaveText("1");
-    
-    
+  await expect(batch).toHaveText("1");
+
+  // Verify the pop up message after adding to cart
+  const popupMessage = page.getByText("Product added to cart", { exact: true });
+
+  await expect(popupMessage).toBeVisible();
+
+  await expect(popupMessage).toBeVisible({ timeout: 2000 });
 });
